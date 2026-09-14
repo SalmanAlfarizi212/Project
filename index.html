@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK Negeri 2 Tasikmalaya</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-red: #cc0000;
+            --dark-red: #990000;
+            --black: #111111;
+            --dark-gray: #222222;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 5%;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        .top-bar .info span {
+            margin-right: 15px;
+        }
+
+        /* --- HEADER / NAVBAR --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-red);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            color: var(--black);
+            text-transform: uppercase;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--black);
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-red);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(153, 0, 0, 0.7)), 
+                        url('https://via.placeholder.com/1200x500') no-repeat center center/cover;
+            height: 400px;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--black);
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- BERITA / CONTENT --- */
+        .section-title {
+            font-size: 22px;
+            color: var(--black);
+            border-left: 5px solid var(--primary-red);
+            padding-left: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+            background-color: #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .card-title a:hover {
+            color: var(--primary-red);
+        }
+
+        .card-date {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar-widget {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .jurusan-list {
+            list-style: none;
+        }
+
+        .jurusan-list li {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .jurusan-list li a {
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: padding-left 0.3s, color 0.3s;
+            display: block;
+        }
+
+        .jurusan-list li a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+
+        .headmaster-card {
+            text-align: center;
+        }
+
+        .headmaster-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 auto 15px;
+            border: 3px solid var(--primary-red);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+            border-top: 5px solid var(--primary-red);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--dark-gray);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="info">
+            <span>Email: info@smkn2kotatasik.sch.id</span>
+            <span>Telp: (0265) 331839</span>
+        </div>
+        <div>
+            <span>Kota Tasikmalaya, Jawa Barat</span>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+    <div class="logo">
+        <img src="images/logo.png" alt="Logo SMKN 2 Tasikmalaya">
+
+    <div>
+        <h2>SMKN 2</h2>
+        <span>TASIKMALAYA</span>
+    </div>
+    </div>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-placeholder">SMK</div>
+                <div class="logo-text">
+                    <h1>SMK Negeri 2 Tasikmalaya</h1>
+                    <p>Bisa, Hebat, Siap Kerja!</p>
+                 </div>
+         </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Kompetensi Keahlian</a></li>
+                    <li><a href="#">Informasi</a></li>
+                    <li><a href="#">PPDB</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h2>Selamat Datang di SMKN 2 Tasikmalaya</h2>
+        <p>Mewujudkan Generasi Unggul, Berkarakter, dan Berdaya Saing Global di Bidang Teknologi dan Industri.</p>
+        <button class="btn-primary">Jelajahi Sekolah</button>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        
+        <!-- BERITA TERKINI -->
+        <main>
+            <h2 class="section-title">Berita & Informasi Terbaru</h2>
+            <div class="news-grid">
+                
+                <div class="card">
+                    <div class="card-img"></div>
+                    <div class="card-body">
+                        <div class="card-date">12 Mei 2024</div>
+                        <h3 class="card-title"><a href="#">Pendaftaran Siswa Baru (PPDB) Tahun Ajaran 2024/2025</a></h3>
+                        <p>Informasi lengkap mengenai jadwal dan persyaratan pendaftaran peserta didik baru...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img"></div>
+                    <div class="card-body">
+                        <div class="card-date">10 Mei 2024</div>
+                        <h3 class="card-title"><a href="#">Prestasi Siswa SMKN 2 Tasikmalaya di LKS Tingrat Provinsi</a></h3>
+                        <p>Selamat kepada para siswa yang telah meraih juara dalam ajang Lomba Kompetensi Siswa...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img"></div>
+                    <div class="card-body">
+                        <div class="card-date">05 Mei 2024</div>
+                        <h3 class="card-title"><a href="#">Pelaksanaan Ujian Sertifikasi Kompetensi Keahlian</a></h3>
+                        <p>Uji kompetensi berjalan lancar dengan penguji eksternal dari DU/DI mitra sekolah...</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- SIDEBAR -->
+        <aside>
+            <!-- Sambutan Kepala Sekolah -->
+            <div class="sidebar-widget headmaster-card">
+                <h3 class="section-title">Kepala Sekolah</h3>
+                <div class="headmaster-img"></div>
+                <h4>Nama Kepala Sekolah, M.Pd.</h4>
+                <p style="font-size: 14px; color: #555; margin-top: 5px;">
+                    "Selamat datang di website resmi SMK Negeri 2 Tasikmalaya..."
+                </p>
+            </div>
+
+            <!-- Jurusan / Program Keahlian -->
+            <div class="sidebar-widget">
+                <h3 class="section-title">Kompetensi Keahlian</h3>
+                <ul class="jurusan-list">
+                    <li><a href="#">Teknik Komputer & Jaringan (TKJ)</a></li>
+                    <li><a href="#">Rekayasa Perangkat Lunak (RPL)</a></li>
+                    <li><a href="#">Teknik Pemesinan (TP)</a></li>
+                    <li><a href="#">Teknik Ototronik (TOT)</a></li>
+                    <li><a href="#">Teknik Kendaraan Ringan (TKR)</a></li>
+                    <li><a href="#">Desain Pemodelan & Informasi Bangunan (DPIB)</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>SMKN 2 Tasikmalaya</h3>
+                <p>Jl. Siliwangi No. 30, Kel. Kahuripan, Kec. Tawang, Kota Tasikmalaya, Jawa Barat 46115.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Tautan Cepat</h3>
+                <p><a href="#">Profil Sekolah</a></p>
+                <p><a href="#">Struktur Organisasi</a></p>
+                <p><a href="#">Fasilitas Sekolah</a></p>
+                <p><a href="#">Hubungan Industri</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>Media Sosial</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">YouTube Channel</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SMK Negeri 2 Tasikmalaya. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
